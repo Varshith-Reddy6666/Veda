@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+            body {
+                font-family: sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: white;
+               
+                justify-content: center; /* Centers horizontally */
+                align-items: center; /* Centers vertically */
+                min-height: 100vh; /* Ensures the body spans the full viewport height */
+                width: 100%; /* Ensures it adjusts to the full width of the screen */
+                box-sizing: border-box; /* Includes padding and border in element's total width/height */
+            }
+
+            header {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                border-bottom: 1px solid #ddd;
+                background-color: white;
+            }
+
+            .header-top {
+                display: flex;
+                align-items: center;
+                padding: 15px 20px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .amgen-logo {
+                height: 40px;
+                margin-right: 20px;
+                text-align: center;
+            }
+
+            .header-title {
+                font-size: 1.3em;
+                font-weight: bold;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .otezla-logo {
+                height: 40px;
+                margin-left: 20px;
+            }
+
+            .header-bottom {
+                display: flex;
+            }
+
+            .header-bottom > div {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                padding: 15px 10px;
+            }
+
+            .header-bottom > div:nth-child(3),
+            .header-bottom > div:nth-child(2) {
+                background-color: #e0e0e0;
+                border-right: 1px solid #fff;
+            }
+
+            .header-bottom > div:nth-child(1) {
+                background-color: #0759a8;
+                color: white;
+            }
+            .icon {
+            height: 20px;
+            margin-right: 8px;
+         }
+         .form-section{
+           
+            /* margin-left: 20px;
+            margin-top: 20px; */
+            margin: 10px;
+            width: 70%;
+            flex: 1;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            max-height: 700px;
+            
+         }
+        .filter{
+            display: flex;
+            
+        }
+        .filter-aggregation {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .aggregation-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Space between checkboxes */
+            justify-content: flex-start;
+        }
+         .agg_class label{
+            display: flex;
+            padding-left: 20px;
+         }
+         .filter-section {
+            display: flex;
+            /* margin-bottom: 20px; */
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: flex-start;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 50px;
+        }
+        .filter-label{
+            color: #0056b3;
+            font-weight: bold;
+        }
+        h3 {
+                color: #333;
+                border-bottom: 2px solid #0056b3;
+                padding-bottom: 8px;
+                margin-bottom: 15px;
+            }
+
+        .checkbox-list {
+                display: flex;
+                flex-direction: column;
+            }
+
+        .checkbox-row {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                padding: 5px 0;
+            }
+
+        .checkbox-row input {
+                transform: scale(1.1);
+            }
+
+        .checkbox-row label {
+                cursor: pointer;
+            }
+        .sidebar{
+            width: 30%;
+            padding: 20px;
+            background-color: #f5f5f5; /* Light background color */
+            border-left: 2px solid #ddd;
+            border-radius: 8px;
+            margin: 10px;
+            max-height: 700px;
+            overflow-y: auto; 
+            
+        }
+        .sidebar h3 {
+            color: #0056b3;
+            margin-bottom: 15px;
+        }
+
+        .sidebar .checkbox-list {
+            display: flex;
+            flex-direction: column;
+             /* Space between the items */
+        }
+
+        .sidebar .checkbox-row {
+            display: flex;
+            align-items: center;
+            /* gap: 10px; */
+            /* padding: 5px 0; */
+        }
+
+        /* Media Query for responsiveness */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .form-section {
+                width: 100%;
+                margin-left: 0;
+                
+            }
+
+            .filter-form,
+            .sidebar {
+                width: 100%;
+                min-height: auto;
+                max-height: none;
+            }
+
+            .header-bottom {
+                flex-direction: column;
+            }
+
+            .header-bottom > div {
+                padding: 10px;
+            }
+        }
+        .buttons-section{
+            display: flex;
+            gap: 30px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            align-items: center;
+            text-align: center; 
+            justify-content: center;
+            
+            margin: 2px;
+        }
+        button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            color: #2667a3;
+            display: flex;
+            
+            gap: 5px;
+            padding: 8px 12px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+                background-color: #e8f1f8;
+            }
+
+        
+        .data-table {
+                width: 100%;
+                margin-top: 30px;
+                overflow-x: auto;
+            }
+
+         .table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 10px;
+                white-space: nowrap;
+            }
+
+        .table th,
+        .table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+
+        .table th {
+                background-color: #0056b3;
+                color: white;
+            }
+
+        .table tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+ </style>
+    <title>VEDA</title>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <img src="{{ url_for('static', filename='images/amgenlogo.png') }}" alt="Amgen Logo" class="amgen-logo">
+           <div class="header-title">Virtual Engine for Data Aggregation</div>
+            
+           <img src="{{ url_for('static', filename='images/images.jpg') }}" alt="Otezla Logo" class="otezla-logo" >
+        </div>
+         <div class="header-bottom">
+           <div>
+             <img src="{{ url_for('static', filename='images/globe.png') }}" alt="World Icon" class="icon">
+             Subnational
+          </div>
+           <div>
+             <img src="{{ url_for('static', filename='images/hospital.png') }}" alt="Building Icon" class="icon">
+            HCP Office
+          </div>
+           <div>
+            <img src="{{ url_for('static', filename='images/doctor.png') }}" alt="Doctor Icon" class="icon">
+             HCP
+            </div>
+        </div>
+    </header>
+    <main>
+        <form  method="post" action="/">
+    <div class="filter">
+        <div class="form-section">
+            <h3>1. Select all applicable aggregation options:</h3>
+            <div class="filter-aggregation">
+                <!-- <h3>1. Select all applicable aggregation options:</h3> -->
+                <div class="aggregation-group">
+                    {% for col in selected_columns %}
+                            <div class="agg_class">
+                                <label for="aggregation_column"><input type="checkbox" name="aggregation_column" id="aggregation_column" value="{{col}}"
+                                     {% if col in agge_columns %}checked{% endif %}>{{col}}
+                                    </label>
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <h3>2. Filter data by using the drop-down menu options below:</h3>
+            <div class="filter-section">
+                <!-- <h3>2. Filter data by using the drop-down menu options below:</h3> -->
+                
+                {% for col, values in unique_values.items() %}
+                    <div class="filter-group">
+                        <label class="filter-label">{{ col }}</label>
+                        <div class="checkbox-list">
+                            {% for value in values %}
+                                <div class="checkbox-row">
+                                    <input 
+                                        type="checkbox" 
+                                        name="{{ col }}" 
+                                        value="{{ value }}" 
+                                        id="{{ col }}_{{ value }}" 
+                                        {% if value in applied_filters.get(col, []) %}checked{% endif %}>
+                                    <label for="{{ col }}_{{ value }}">{{ value }}</label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="filter-button-group full-width">
+                <button type="submit">Apply Filters</button>
+                <button type="button" id="clearFilters" onclick="clearFilters()">Cancel Filters</button>
+            </div>
+        </div>
+        <div class="sidebar">
+            <h3>3. Choose Key Metrics  <span style="font-size: 14px; color:#0056b3; padding-left: 5px;">(i)</span></h3>
+            <div class="sidebar-filter-group">
+                <!-- <label class="filter-label">Metrics</label> -->
+                <div class="metrics-section">
+                    <button type="button" id="selectTop10" onclick="selectTop(10)">Select Top 10</button>
+                    <button type="button" id="selectTop20" onclick="selectTop(20)">Select Top 20</button>
+                    <button type="button" id="clearSelection" onclick="clearSelection()">Clear Selection</button>
+                </div>
+                <div class="checkbox-list">
+                    <div class="metrics-checklist">
+                    {% for col in metrics %}
+                        <div class="checkbox-row">
+                            <input 
+                                type="checkbox" 
+                                name="numbercol" 
+                                value="{{ col }}" 
+                                id="numbercol_{{ col }}" 
+                                {% if col in selected_metrics %}checked{% endif %}>
+                            <label for="numbercol_{{ col }}">{{ col }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+        </form>
+
+        <section class="data-table">
+            <!-- Preview and Download Buttons -->
+            <div class="buttons-section" >
+                <button id="preview-button" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                    <span>Preview</span>
+                </button>
+                <form method="POST" action="/download" style="display: inline;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-download"></i>
+                        <span>Download </span>
+                     </button>
+                </form>
+            </div>
+        
+            <!-- Table Section -->
+            <div id="table-container" style="display: none; margin-top: 20px;">
+                {% if sample_data %}
+                    <h3>Data Preview </h3>
+                    {{ sample_data|safe }}
+                {% else %}
+                    <p>No data to display. Apply filters to view results.</p>
+                {% endif %}
+            </div>
+        </section>
+        
+
+    </main>
+</body>
+<script>
+    // Function to select the top N checkboxes
+function selectTop(n) {
+    // Get all checkboxes in the metrics list
+    const checkboxes = document.querySelectorAll('.metrics-checklist input[type="checkbox"]');
+    
+    // Loop through and check the first N checkboxes
+    checkboxes.forEach((checkbox, index) => {
+        checkbox.checked = index < n;
+    });
+}
+
+// Function to clear all selections
+function clearSelection() {
+    // Get all checkboxes in the metrics list
+    const checkboxes = document.querySelectorAll('.metrics-checklist input[type="checkbox"]');
+    
+    // Uncheck all checkboxes
+    checkboxes.forEach(checkbox => {(checkbox.checked = false)});
+}
+
+function clearFilters() {
+    const checkboxes = document.querySelectorAll('.filter-section input[type="checkbox"]');
+    if (!checkboxes.length) {
+        console.warn('No filter checkboxes found.');
+        return;
+    }
+    checkboxes.forEach(checkbox => checkbox.checked = false);
+}
+
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const previewButton = document.getElementById('preview-button');
+        const tableContainer = document.getElementById('table-container');
+
+        previewButton.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent the button from submitting the form (if inside a form)
+            if (tableContainer.style.display === 'none') {
+                tableContainer.style.display = 'block';
+            } else {
+                tableContainer.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</html>
